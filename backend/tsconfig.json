@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+     "lib": [
+        "es5",
+        "es6"
+     ],
+     "target": "ES6",
+     "module": "commonjs",
+     "moduleResolution": "node",
+     "outDir": "./dist",
+     "baseUrl": ".",
+     "rootDir": "./src",
+     "strict": true,
+     "emitDecoratorMetadata": true,
+     "experimentalDecorators": true,
+     "sourceMap": true,
+     "typeRoots": ["./node_modules/@types", "./types"],
+     "esModuleInterop": true,
+     "skipLibCheck": true,
+     "resolveJsonModule": true,
+     "types": ["node", "express"],
+     "forceConsistentCasingInFileNames": true,
+     "composite": true,
+      "declaration": true,
+      "paths": {},
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*", "src/**/**/*", "src/**/*.json", "src/config"]
+}

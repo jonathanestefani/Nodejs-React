@@ -1,0 +1,18 @@
+{
+	"crud": {
+		"delete_error": "Erro ao tentar efetuar a exclusão."
+	},
+	"validation": {
+		"invalid_param": "O campo {{name}} é inválido.",
+		"min_length": "O campo deve conter no mínimo {{value}} caracteres.",
+		"required": "Este campo é obrigatório.",
+		"record_exists": "Registro já existe",
+		"state_required": "Estado é obrigatória",
+		"city_required": "Cidade é obrigatória",
+		"area_total": "A soma da área agricultável e vegetação não pode exceder a área total da fazenda"
+	},
+	"validation.invalid_param": "validation.invalid_param",
+	"validation.min_length": "validation.min_length",
+	"validation.required": "validation.required",
+	"validation.record_exists": "validation.record_exists",
+}

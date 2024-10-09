@@ -1,0 +1,18 @@
+{
+	"crud": {
+		"delete_error": "Error trying to delete."
+	},
+	"validation": {
+		"invalid_param": "The {{name}} field is invalid.",
+		"min_length": "The field must contain at least {{value}} characters.",
+		"required": "The field is required.",
+		"record_exists": "Registration already exists",
+		"state_required": "State is required",
+		"city_required": "City is required",
+		"area_total": "The sum of the arable area and vegetation cannot exceed the total area of ​​the farm"
+	},
+	"validation.invalid_param": "validation.invalid_param",
+	"validation.min_length": "validation.min_length",
+	"validation.required": "validation.required",
+	"validation.record_exists": "validation.record_exists"
+}
