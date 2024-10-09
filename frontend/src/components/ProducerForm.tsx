@@ -33,7 +33,6 @@ const ProducerForm: React.FC<ProducerFormProps> = ({ existingProducer, onSave })
   });
 
   // Estado para armazenar dados carregados da API
-  const [countries, setCountries] = useState<Country[]>([]);
   const [states, setStates] = useState<State[]>([]);
   const [cities, setCities] = useState<City[]>([]);
   const [crops, setCrops] = useState<Crop[]>([]);
@@ -53,9 +52,9 @@ const ProducerForm: React.FC<ProducerFormProps> = ({ existingProducer, onSave })
         const statesResponse = await api.get('/locations/states');
         const cropsResponse = await api.get('/rural-producers-crops');
 
-        console.log(statesResponse.data || []);
+        console.log(statesResponse || []);
 
-        setStates(statesResponse.data || []);
+        setStates(statesResponse.data.result || []);
         setCrops([]);
       } catch (error) {
         console.error('Erro ao carregar dados:', error);
@@ -67,7 +66,7 @@ const ProducerForm: React.FC<ProducerFormProps> = ({ existingProducer, onSave })
 
   const loadCities = async (state_id: number) => {
     const citiesResponse = await api.get('/locations/cities?filters[state_id]=' + state_id);
-    setCities(citiesResponse.data || []);
+    setCities(citiesResponse.data.result || []);
   }
 
   // Atualiza o estado conforme os campos são preenchidos
@@ -156,24 +155,6 @@ const ProducerForm: React.FC<ProducerFormProps> = ({ existingProducer, onSave })
         </Grid>
 
         {/* Campos de localização: País, Estado, Cidade */}
-        <Grid item xs={12}>
-          <TextField
-            select
-            label="País"
-            name="pais"
-            value={formData.estado}
-            onChange={handleChange}
-            fullWidth
-            required
-          >
-            {countries.map((country) => (
-              <MenuItem key={country.id} value={country.name}>
-                {country.name}
-              </MenuItem>
-            ))}
-          </TextField>
-        </Grid>
-
         <Grid item xs={6}>
           <TextField
             select

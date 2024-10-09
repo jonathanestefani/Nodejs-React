@@ -7,5 +7,5 @@ export default function errorHandling(
   response: Response,
   next: NextFunction,
 ) {
-  return SendResponse(response, [], error.message || 'UnknownError', 500);
+  return SendResponse(response, [], 500);
 }

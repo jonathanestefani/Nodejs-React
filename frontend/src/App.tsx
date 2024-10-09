@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemText, Divider } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Typography, Drawer, List, ListItem, ListItemButton, ListItemText, Divider } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import ProducerForm from './components/ProducerForm';
 import ProducerList from './components/ProducerList';
 import Dashboard from './components/Dashboard';
+import { Producer } from './interfaces/types';
 
 const App: React.FC = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -12,6 +13,10 @@ const App: React.FC = () => {
   // Alterna o estado do Drawer (menu lateral)
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
+  };
+
+  const handleEditProducer = (producer: Producer) => {
+    // Lógica para editar o produtor
   };
 
   return (
@@ -33,15 +38,15 @@ const App: React.FC = () => {
         <Drawer open={drawerOpen} onClose={toggleDrawer}>
           <div style={{ width: 250 }} onClick={toggleDrawer} onKeyDown={toggleDrawer}>
             <List>
-              <ListItem button component={Link} to="/cadastro">
-                <ListItemText primary="Cadastro de Produtor" />
-              </ListItem>
-              <ListItem button component={Link} to="/listagem">
-                <ListItemText primary="Listagem de Produtores" />
-              </ListItem>
-              <ListItem button component={Link} to="/dashboard">
+              <ListItemButton component={Link} to="/dashboard">
                 <ListItemText primary="Dashboard" />
-              </ListItem>
+              </ListItemButton>
+              <ListItemButton component={Link} to="/cadastro">
+                <ListItemText primary="Cadastro de Produtor" />
+              </ListItemButton>
+              <ListItemButton component={Link} to="/listagem">
+                <ListItemText primary="Listagem de Produtores" />
+              </ListItemButton>
             </List>
             <Divider />
           </div>
@@ -49,22 +54,12 @@ const App: React.FC = () => {
 
         {/* Conteúdo Principal */}
         <main style={{ flexGrow: 1, padding: '80px 20px' }}>
-          <Switch>
-            <Route path="/cadastro">
-              <ProducerForm />
-            </Route>
-            <Route path="/listagem">
-              <ProducerList />
-            </Route>
-            <Route path="/dashboard">
-              <Dashboard />
-            </Route>
-            <Route exact path="/">
-              <Typography variant="h4" component="h2">
-                Bem-vindo ao Sistema de Gestão de Produtores Rurais
-              </Typography>
-            </Route>
-          </Switch>
+            <Routes>
+            <Route path="/" element={<Dashboard />} />
+              <Route path="/cadastro" element={<ProducerForm />} />
+              <Route path="/listagem" element={<ProducerList onEdit={handleEditProducer} />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
         </main>
       </div>
     </Router>
